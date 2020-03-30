@@ -1,0 +1,30 @@
+.hidden {
+  display: none; }
+
+.show {
+  display: block; }
+
+.table-sum {
+  background: #337ab7 !important;
+  color: white; }
+
+.table-sum strong {
+  line-height: 34px; }
+
+.placeholder {
+  color: grey; }
+
+select option:first-child {
+  color: grey;
+  display: none; }
+
+select option {
+  color: #555; }
+
+#table-data {
+  overflow-x: unset;
+  max-width: 800px;
+  margin: 0 auto; }
+
+.modal-header .close {
+  margin-top: -22px !important; }

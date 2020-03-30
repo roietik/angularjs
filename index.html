@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="app">
+
+<head>
+	<title>Crud</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/assets/styles/style.css" />
+</head>
+
+<body>
+	<div class="container" ng-app="app" ng-controller="main">
+		<div id="table-data" class="table-responsive">
+			<h2>Data:</h2>
+			<pre>{{data | json}}</pre>
+			<div ng-class="alert.class" role="alert">
+				This is {{alert.title}}—check it out!
+				<button type="button" class="close" id='del' data-dismiss="alert" aria-label="Close"
+					ng-click="resetAlert()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<table class="table table-border table-striped table-hover">
+				<thead>
+					<tr class="tr-header">
+						<th>Name</th>
+						<th>
+							<div>
+								<label for="room-title">Room</label>
+								<select class="form-control" id="room-title" ng-model="select" ng-change="filterData()">
+									<option value=""></option>
+									<option>All</option>
+									<option ng-repeat="val in data | unique:'room' track by $index ">{{val.room}}
+									</option>
+								</select>
+							</div>
+						</th>
+						<th>Grade</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="val in filter track by $index">
+						<td>{{val.name}}</td>
+						<td>{{val.room}}</td>
+						<td>{{val.grade}}</td>
+						<td>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								ng-click="editData(val , 'Edit')" data-target="#addModal">Edit
+							</button>
+							<button type="button" class="btn btn-danger" ng-click="prevDeleteData($index, val)"
+								data-toggle="modal" data-target="#deleteModal">
+								Delete
+							</button>
+						</td>
+					</tr>
+					<tr class="table-sum">
+						<td colspan="3">
+							<strong>Average: {{avg().toFixed(2)}}</strong>
+						</td>
+						<td>
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"
+								ng-click="changeTitle('Add')">Add New</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Modal Delete -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure you want to delete this?</p>
+						<pre>{{del | json}}</pre>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="deleteData(delete[0], delete[1])"
+							data-dismiss="modal">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Add -->
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form id="frm" name="frm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="addModalLabel">{{title}}</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="name">Name
+									<span class="alert-warning" ng-show="frm.name.$error.required">Required!</span>
+									<span class="alert-danger" ng-show="frm.name.$error.minlength"> To
+										short!</span></label>
+								<input type="text" class="form-control" placeholder="Name" ng-model="add.name" id="name"
+									required name="name" ng-minlength="10" />
+							</div>
+							<div class="form-group">
+								<label for="room">Room
+									<span class="alert-warning" ng-show="frm.room.$error.required">Required!</span>
+								</label>
+								<select name="room" class="form-control" id="room" ng-model="add.room" required>
+									<option value=""></option>
+									<option ng-repeat="room in predefRooms track by $index">{{room}}
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="grade">Grade
+									<span class="alert-warning" ng-show="frm.grade.$error.required">Required!</span>
+								</label>
+								<select name="grade" class="form-control" id="grade" ng-model="add.grade" required>
+									<option value=""></option>
+									<option ng-repeat="grade in predefGrades track by $index">
+										{{grade}}
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button id="submit" ng-disabled="frm.$invalid" ng-click="addData()" type="button"
+								class="btn btn-primary">Add
+								new</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="/assets/js/jquery-2.1.4.min.js"></script>
+	<script src="/assets/angular/angular.min.js"></script>
+	<script src="/assets/angular/angular-route.min.js"></script>
+	<script src="/assets/js/angular-local-storage.js"></script>
+	<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+	<script src="/app.js"></script>
+</body>
+
+</html>

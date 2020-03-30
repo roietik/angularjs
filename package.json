@@ -1,0 +1,55 @@
+{
+  "_from": "angular-bootstrap-boilerplate",
+  "_id": "angular-bootstrap-boilerplate@0.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-SPXIvjS9rBuJZyEnCQTso71WqFE=",
+  "_location": "/angular-bootstrap-boilerplate",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "angular-bootstrap-boilerplate",
+    "name": "angular-bootstrap-boilerplate",
+    "escapedName": "angular-bootstrap-boilerplate",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-bootstrap-boilerplate/-/angular-bootstrap-boilerplate-0.0.2.tgz",
+  "_shasum": "48f5c8be34bdac1b896721270904eca3bd56a851",
+  "_spec": "angular-bootstrap-boilerplate",
+  "_where": "/Users/radek/Documents/projekty/angularjs/new",
+  "author": {
+    "name": "Mehmet Fatih YILDIZ"
+  },
+  "scripts": {
+    "watch:scss": "node-sass --watch assets/styles -o assets/styles"
+  },
+  "bugs": {
+    "url": "https://github.com/mfyz/angular-bootstrap-boilerplate/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Angular Bootstrap Web App Boilerplate",
+  "homepage": "https://github.com/mfyz/angular-bootstrap-boilerplate",
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "main": "index.html",
+  "name": "angular-bootstrap-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://mfyz@github.com/mfyz/angular-bootstrap-boilerplate.git"
+  },
+  "version": "0.0.2",
+  "dependencies": {
+    "node-sass": "4.13.1"
+  }
+}
